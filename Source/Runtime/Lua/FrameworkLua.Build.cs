@@ -7,6 +7,8 @@ public class FrameworkLua : ModuleRules
     {
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
+        PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "Delegate"));
+        
         PublicIncludePaths.AddRange(new string[]
         {
             Path.Combine(ModuleDirectory),
@@ -14,6 +16,9 @@ public class FrameworkLua : ModuleRules
             Path.Combine(ModuleDirectory, "Public/LuaUObject"),
             Path.Combine(ModuleDirectory, "Public/LuaUObject/Widget"),
             Path.Combine(ModuleDirectory, "Public/LuaUObject/Subsystem"),
+            Path.Combine(ModuleDirectory, "Public/FunctionLibrary"),
+            Path.Combine(ModuleDirectory, "Public/Interface"),
+            Path.Combine(ModuleDirectory, "Public/Macro"),
         });
         
         PrivateIncludePaths.AddRange(new string[]
@@ -23,16 +28,16 @@ public class FrameworkLua : ModuleRules
             Path.Combine(ModuleDirectory, "Private/LuaUObject"),
             Path.Combine(ModuleDirectory, "Private/LuaUObject/Widget"),
             Path.Combine(ModuleDirectory, "Private/LuaUObject/Subsystem"),
+            Path.Combine(ModuleDirectory, "Private/FunctionLibrary"),
+            Path.Combine(ModuleDirectory, "Private/Interface"),
+            Path.Combine(ModuleDirectory, "Private/Settings"),
         });
         
         PublicDependencyModuleNames.AddRange(
             new string[]
             {
                 "Core",
-                "CommonUI",
-                "UMG",
-                "slua_unreal",
-                "slua_profile",
+                "InfinityFramework",
             }
         );
 
@@ -43,7 +48,12 @@ public class FrameworkLua : ModuleRules
                 "Engine",
                 "Slate",
                 "SlateCore",
-                "FrameworkHelper"
+                "FrameworkHelper",
+                "CommonUI",
+                "UMG",
+                "slua_unreal",
+                "slua_profile",
+                "DeveloperSettings"
             }
         );
     }

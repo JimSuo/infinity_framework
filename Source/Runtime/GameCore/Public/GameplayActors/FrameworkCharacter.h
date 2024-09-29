@@ -8,7 +8,6 @@
 
 #include "FrameworkCharacter.generated.h"
 
-class UFrameworkPawnExtensionComponent;
 class UInputComponent;
 
 /**
@@ -47,22 +46,7 @@ public:
 protected:
 	
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "slua", meta=(ShowOnlyInnerProperties))
-    FString LuaFilePath;
+    FString CharacterLuaFilePath;
 
 	//~ sLua Property End
-	
-private:
-    //~ Framework Property Begin
-
-	/**
-     * @private Pawn行为组件名
-     */
-    static const FName PawnExtComponentName;
-    /**
-     * @brief Pawn行为组件
-     */
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Framework", Meta = (AllowPrivateAccess = "true"))
-    TObjectPtr<UFrameworkPawnExtensionComponent> PawnExtComponent; 
-
-	//~ Framework Property End
 };

@@ -16,6 +16,8 @@
 #include "CoreMinimal.h"
 #include "LuaState.h"
 
+class ULuaModuleSettings;
+
 /**
  * @brief Lua状态机信息
  */
@@ -84,23 +86,6 @@ struct FLuaRegisterEntry
 };
 
 /**
- * @todo 后续开放到ini配置中
- * @brief LuaPanda IDE Debug 连接配置
- */
-struct FLuaPandaConnectConfig
-{
-	/**
-	 * @brief 连接的IP
-	 */
-	FString IP = "127.0.0.1";
-	/**
-	 * @brief 连接的端口
-	 */
-	uint16_t Port = 8818;
-};
-
-
-/**
  * @brief Lua状态机子系统
  * @note 此处以Subsystem结尾命名不代表这个类型是一个Subsystem类型的子类, 是为了表现其层级以及命名统一才使用Subsystem作为结尾
  */
@@ -133,8 +118,6 @@ public:
 
 	void DoString(const char* Str) const;
 
-	void SetMainFile(const FString& MainFileValue);
-
 	template <typename ...ARGS>
 	slua::LuaVar Call(const char* Key, ARGS&& ...Args)
 	{
@@ -157,39 +140,13 @@ public:
 	int ClearAllTimers();
 
 protected:
-	/**
-	 * @brief LuaFramework文件夹中的Main.Lua文件在Content的Lua文件夹下的相对路径
-	 */
-	FString LuaFrameworkMain;
-	/**
-	 * @brief LuaPanda通信的配置数据
-	 */
-	FLuaPandaConnectConfig LuaPandaConnectorConfig;
-	
-	/**
-	 * @todo 后续开放到ini配置中
-	 * @brief 插件或GameFeature的路径标识
-	 */
-	static const char PluginOrGameFeatureFilePathMark;
-
-#if WITH_EDITOR
-	/**
-	 * @todo 后续开放到ini配置中
-	 * @brief Developers文件夹的路径标识
-	 */
-	static const char DevelopersFilePathMark;
-#endif
-	
-	/**
-	 * @brief Lua文件在Game中的路径
-	 */
-	static const FString LuaInGameFilePath;
+	// 模块配置
+	static const ULuaModuleSettings* ModuleSettings;
 
 	
 	void RevertScriptByteCode();
 
 	/**
-	 * @todo 后续开放到ini配置中
 	 * @brief 加载Lua文件
 	 * @param InFn Lua对象的LuaFilePath 
 	 * @param OutFilePath Lua脚本的绝对路径 
@@ -219,8 +176,6 @@ private:
 
 	TMap<int, FTimerHandle> _timers;
 	int _timerindex;
-	
-	static const char* StartLuaPandaFunction;
 	
 	static const char* MainFunction;
 

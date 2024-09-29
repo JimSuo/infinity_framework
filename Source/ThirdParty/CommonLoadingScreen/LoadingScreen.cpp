@@ -1,5 +1,5 @@
 ﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Modules/ModuleManager.h"
+#include "LoadingScreen.h"
 
 IMPLEMENT_MODULE(FDefaultModuleImpl, LoadingScreen)

@@ -35,7 +35,7 @@ public:
 	FLuaNetSerialization LuaNetSerialization;
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "slua")
-	FString LuaFilePath;
+	FString PlayerControllerLuaFilePath;
 	//~ slua End
 
 	

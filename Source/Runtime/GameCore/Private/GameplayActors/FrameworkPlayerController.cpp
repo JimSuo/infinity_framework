@@ -69,7 +69,7 @@ void AFrameworkPlayerController::OnRep_PlayerState()
 
 FString AFrameworkPlayerController::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return PlayerControllerLuaFilePath;
 }
 
 void AFrameworkPlayerController::PostInitializeComponents()

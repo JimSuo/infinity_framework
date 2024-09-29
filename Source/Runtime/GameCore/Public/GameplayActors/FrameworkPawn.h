@@ -8,7 +8,6 @@
 
 #include "FrameworkPawn.generated.h"
 
-class UFrameworkPawnExtensionComponent;
 class UInputComponent;
 
 /**
@@ -46,19 +45,6 @@ public:
     FLuaNetSerialization LuaNetSerialization;
 protected:
     UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "slua")
-    FString LuaFilePath;
+    FString PawnLuaFilePath;
     //~ Lua Property End
-
-private:
-    //~ Framework Property Begin
-    /**
-     * @private Pawn行为组件名
-     */
-    static const FName PawnExtComponentName;
-    /**
-     * @brief Pawn行为组件
-     */
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Framework|Pawn", Meta = (AllowPrivateAccess = "true"))
-    TObjectPtr<UFrameworkPawnExtensionComponent> PawnExtComponent; 
-    //~ Framework Property End
 };

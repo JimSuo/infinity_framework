@@ -24,7 +24,8 @@ public class LoadingScreen : ModuleRules
                 "PreLoadScreen",
                 "RenderCore",
                 "DeveloperSettings",
-                "UMG"
+                "UMG",
+                "InfinityFramework"
             }
         );
     }

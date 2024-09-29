@@ -1,0 +1,6 @@
+#include "FrameworkLuaDelegates.h"
+
+FRAMEWORKLUA_API OnLuaStateSubsystemCreatedEvent OnLuaStateSubsystemCreated;
+FRAMEWORKLUA_API OnLuaStateSubsystemStartedEvent OnLuaStateSubsystemStarted;
+FRAMEWORKLUA_API OnLuaStateSubsystemDestroyedEvent OnLuaStateSubsystemDestroyed;
+FRAMEWORKLUA_API PostLoadLuaFileEvent PostLoadLuaFile;

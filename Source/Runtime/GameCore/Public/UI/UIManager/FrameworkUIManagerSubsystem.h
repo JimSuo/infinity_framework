@@ -8,13 +8,12 @@
 class FSubsystemCollectionBase;
 class UFrameworkLocalPlayer;
 class UFrameworkUIPolicy;
-class UObject;
 
 /**
  * @brief 提供界面管理功能
  * @note 此类是抽象的，以防止创建它。如果需要使用基本功能，可以在Game层级继承此类。
  */
-UCLASS(Abstract, config = Framework)
+UCLASS(Abstract, config = Framework, defaultconfig)
 class FRAMEWORKGAMECORE_API UFrameworkUIManagerSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
@@ -51,9 +50,4 @@ private:
 	 */
 	UPROPERTY(Transient)
 	TObjectPtr<UFrameworkUIPolicy> CurrentPolicy = nullptr;
-	/**
-	 * @brief 当前UI策略在DefaultFramework.ini中的UI策略类引用配置
-	 */
-	UPROPERTY(config, EditAnywhere)
-	TSoftClassPtr<UFrameworkUIPolicy> DefaultUIPolicyClass;
 };

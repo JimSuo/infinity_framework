@@ -30,5 +30,5 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "slua")
-	FString LuaFilePath;
+	FString PlayerStateLuaFilePath;
 };

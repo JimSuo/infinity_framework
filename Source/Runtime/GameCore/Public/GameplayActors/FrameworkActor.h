@@ -39,7 +39,7 @@ public:
 
 protected:
     UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "slua")
-        FString LuaFilePath;
+        FString ActorLuaFilePath;
 
 private:
     bool EnableLuaTick = false;

@@ -170,3 +170,9 @@ void UUIManagerBPFunctionLibrary::ResumeInputForPlayer(ULocalPlayer* LocalPlayer
 	}
 }
 
+TSoftClassPtr<UCommonActivatableWidget> UUIManagerBPFunctionLibrary::MakeCommonActivatableWidgetSoftClassRefrence(
+	const FString& InPath)
+{
+	return TSoftClassPtr<UCommonActivatableWidget>(FSoftObjectPath(InPath));
+}
+

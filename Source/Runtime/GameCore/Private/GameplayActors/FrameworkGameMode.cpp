@@ -25,7 +25,7 @@ void AFrameworkGameModeBase::PostInitializeComponents()
 
 FString AFrameworkGameModeBase::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return GameModeBaseLuaFilePath;
 }
 
 //~ GameMode
@@ -44,5 +44,5 @@ void AFrameworkGameMode::PostInitializeComponents()
 
 FString AFrameworkGameMode::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return GameModeLuaFilePath;
 }

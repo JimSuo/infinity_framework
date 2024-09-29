@@ -22,7 +22,7 @@ void AFrameworkActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 FString AFrameworkActor::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return ActorLuaFilePath;
 }
 
 void AFrameworkActor::PostInitializeComponents()

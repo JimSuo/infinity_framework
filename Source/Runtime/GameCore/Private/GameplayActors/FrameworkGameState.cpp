@@ -17,7 +17,7 @@ void AFrameworkGameStateBase::PostInitializeComponents()
 
 FString AFrameworkGameStateBase::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return GameStateBaseLuaFilePath;
 }
 
 void AFrameworkGameStateBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -36,7 +36,7 @@ AFrameworkGameState::AFrameworkGameState(const FObjectInitializer& ObjectInitial
 
 FString AFrameworkGameState::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return GameStateLuaFilePath;
 }
 
 void AFrameworkGameState::PostInitializeComponents()

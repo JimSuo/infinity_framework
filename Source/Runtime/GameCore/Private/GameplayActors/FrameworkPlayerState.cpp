@@ -10,7 +10,7 @@ AFrameworkPlayerState::AFrameworkPlayerState(const FObjectInitializer& ObjectIni
 
 FString AFrameworkPlayerState::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return PlayerStateLuaFilePath;
 }
 
 void AFrameworkPlayerState::PostInitializeComponents()

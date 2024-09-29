@@ -20,8 +20,8 @@ UFrameworkGameInstance::UFrameworkGameInstance(const FObjectInitializer& ObjectI
 {
 	if (!HasAnyFlags(RF_ClassDefaultObject | RF_ArchetypeObject))
 	{
-		// 初始化Lua虚拟机
-		FLuaStateSubsystem & LuaStateSubsystem = FLuaStateSubsystem::GetLuaStateSubsystem();
+		// 创建并初始化Lua虚拟机
+		FLuaStateSubsystem& LuaStateSubsystem = FLuaStateSubsystem::GetLuaStateSubsystem();
 		LuaStateSubsystem.Init(this);
 	}
 }
@@ -146,7 +146,11 @@ int32 UFrameworkGameInstance::AddLocalPlayer(ULocalPlayer* NewPlayer, FPlatformU
 			PrimaryPlayer = NewPlayer;
 		}
 		// 通知UI管理器添加了本地玩家
-		GetSubsystem<UFrameworkUIManagerSubsystem>()->NotifyPlayerAdded(Cast<UFrameworkLocalPlayer>(NewPlayer));
+		auto* UIManager = GetSubsystem<UFrameworkUIManagerSubsystem>();
+		if (UIManager != nullptr)
+		{
+			UIManager->NotifyPlayerAdded(Cast<UFrameworkLocalPlayer>(NewPlayer));
+		}
 	}
 	
 	return ReturnVal;
@@ -159,7 +163,11 @@ bool UFrameworkGameInstance::RemoveLocalPlayer(ULocalPlayer* ExistingPlayer)
 		PrimaryPlayer.Reset();
 		UE_LOG(LogFrameworkGameCore, Log, TEXT("RemoveLocalPlayer: Unsetting Primary Player from %s"), *ExistingPlayer->GetName());
 	}
-	GetSubsystem<UFrameworkUIManagerSubsystem>()->NotifyPlayerDestroyed(Cast<UFrameworkLocalPlayer>(ExistingPlayer));
+	auto* UIManager = GetSubsystem<UFrameworkUIManagerSubsystem>();
+	if (UIManager != nullptr)
+	{
+		UIManager->NotifyPlayerDestroyed(Cast<UFrameworkLocalPlayer>(ExistingPlayer));
+	}
 
 	return Super::RemoveLocalPlayer(ExistingPlayer);
 }
@@ -197,6 +205,6 @@ void UFrameworkGameInstance::Init()
 void UFrameworkGameInstance::Shutdown()
 {
 	Super::Shutdown();
-	FLuaStateSubsystem & LuaStateSubsystem = FLuaStateSubsystem::GetLuaStateSubsystem();
+	FLuaStateSubsystem& LuaStateSubsystem = FLuaStateSubsystem::GetLuaStateSubsystem();
 	LuaStateSubsystem.Close();
 }

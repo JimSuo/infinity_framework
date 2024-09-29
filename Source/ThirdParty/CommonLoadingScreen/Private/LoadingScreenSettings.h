@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "InfinityFrameworkConfig.h"
 #include "Engine/DeveloperSettingsBackedByCVars.h"
 #include "UObject/SoftObjectPath.h"
 
@@ -18,7 +19,10 @@ class ULoadingScreenSettings : public UDeveloperSettingsBackedByCVars
 	GENERATED_BODY()
 
 public:
-	ULoadingScreenSettings();
+	ULoadingScreenSettings()
+	{
+		CategoryName = InfinityFrameworkConfig::FrameworkSettingsCategory;
+	}
 
 public:
 	

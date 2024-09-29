@@ -10,25 +10,19 @@ public class FrameworkTemporary : ModuleRules
         PublicIncludePaths.AddRange(new string[]
         {
             Path.Combine(ModuleDirectory),
-            Path.Combine(ModuleDirectory, "Public"),
-            Path.Combine(ModuleDirectory, "Public/Input"),
-            Path.Combine(ModuleDirectory, "Public/Component"),
-            Path.Combine(ModuleDirectory, "Public/Input/Interface"),
+            Path.Combine(ModuleDirectory, "Public")
         });
 
         PrivateIncludePaths.AddRange(new string[]
         {
             Path.Combine(ModuleDirectory),
-            Path.Combine(ModuleDirectory, "Private"),
-            Path.Combine(ModuleDirectory, "Private/Input"),
-            Path.Combine(ModuleDirectory, "Private/Component"),
-            Path.Combine(ModuleDirectory, "Private/Input/Interface"),
+            Path.Combine(ModuleDirectory, "Private")
         });
         
         PublicDependencyModuleNames.AddRange(
             new string[]
             {
-                "Core"
+                "Core",
             }
         );
 
@@ -40,8 +34,6 @@ public class FrameworkTemporary : ModuleRules
                 "Slate",
                 "slua_unreal",
                 "SlateCore",
-                "EnhancedInput",
-                "ModularGameplay"
             }
         );
     }

@@ -1,23 +1,19 @@
 #include "FrameworkPawn.h"
 
 #include "FrameworkPawnExtensionComponent.h"
-#include "EnhancedInputComponent.h"
-#include "FrameworkGameCore.h"
 #include "Net/UnrealNetwork.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FrameworkPawn)
 
-const FName AFrameworkPawn::PawnExtComponentName = FName(TEXT("PawnExtensionComponent"));
-
 AFrameworkPawn::AFrameworkPawn(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
 {
-    PawnExtComponent = CreateDefaultSubobject<UFrameworkPawnExtensionComponent>(AFrameworkPawn::PawnExtComponentName);
+    
 }
 
 FString AFrameworkPawn::GetLuaFilePath_Implementation() const
 {
-    return LuaFilePath;
+    return PawnLuaFilePath;
 }
 
 void AFrameworkPawn::PostInitializeComponents()
@@ -30,13 +26,9 @@ void AFrameworkPawn::PostInitializeComponents()
 void AFrameworkPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
-    auto* EnhancedInputComp = Cast<UEnhancedInputComponent>(PlayerInputComponent);
-    if (EnhancedInputComp == nullptr)
-    {
-        UE_LOG(LogFrameworkGameCore, Error, TEXT("获取增强输入组件失败，请检查项目设置。"));
-        return;
-    }
-    PawnExtComponent->SetupPlayerInputComponent(EnhancedInputComp);
+
+    // 如果包含pawn拓展插件, 绑定自身上所有实现了IListenPlayerInput接口的Component的输入响应
+    UFrameworkPawnExtensionComponent::SetupPlayerInputComponent(this, PlayerInputComponent);
 }
 
 void AFrameworkPawn::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

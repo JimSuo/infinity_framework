@@ -1,20 +1,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "Engine/GameInstance.h"
 #include "LuaOverriderInterface.h"
 
-#include "LuaGameInstanceSubSystem.generated.h"
+#include "LuaGameInstanceSubsystem.generated.h"
 
-UCLASS()
+UCLASS(Abstract)
 class FRAMEWORKLUA_API ULuaGameInstanceSubSystem : public UGameInstanceSubsystem, public ILuaOverriderInterface
 {
 	GENERATED_BODY()
+
 public:
 	ULuaGameInstanceSubSystem();
-	FString GetLuaFilePath_Implementation() const override;
+	
+	//~ sLua Interface Begin
+	
+public:
+	virtual FString GetLuaFilePath_Implementation() const override;
 
+	//~ sLua Interface End
+	
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "slua")
     FString LuaFilePath;

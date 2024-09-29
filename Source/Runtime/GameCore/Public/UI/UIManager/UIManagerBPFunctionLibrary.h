@@ -117,6 +117,15 @@ public:
 	 */
 	static void ResumeInputForPlayer(ULocalPlayer* LocalPlayer, FName SuspendToken);
 
+
+	/**
+	 * @brief 根据路径获取CommonActivatableWidget类的软引用指针
+	 * @param InPath 资源路径
+	 * @return 类的软引用指针
+	 */
+	UFUNCTION(BlueprintCallable)
+	static TSoftClassPtr<UCommonActivatableWidget> MakeCommonActivatableWidgetSoftClassRefrence(const FString& InPath);
+
 private:
 	/**
 	 * @privatesection 输入暂停计数
